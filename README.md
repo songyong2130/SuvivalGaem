@@ -1,2 +1,4 @@
 # SuvivalGaem
-Solo Project(Unity Practice)
+### 개인 프로젝트(유니티 연습용)
+장르 : 3D액션 / 디펜스
+### 많은 코드 평가 부탁드립니다.
