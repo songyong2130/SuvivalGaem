@@ -1,3 +1,4 @@
+//TODO: 공격을 조금 더 다듬어 넉백을 줄여보기
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -45,7 +46,7 @@ public class PlayerAttack : MonoBehaviour
         if(ctx.started && !isAttack)
         {
             isAttack = true;
-            // 캐릭터의 시작점 (0,0,0) + 캐릭터 몸통 기준 앞쪽 * 1.5m + 
+            // 월드 좌표계의 시작점 (0,0,0) + 캐릭터 몸통 기준 앞쪽 1m* 1.5
             meleeBoxPosition = transform.position + transform.forward * 1.5f;
             Collider[] attackArray = Physics.OverlapBox(
                     meleeBoxPosition,
@@ -57,12 +58,12 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (collider.TryGetComponent(out Enemy enemy))
                 {
-                    enemy.takeDamage(meleeDmg);
+                    enemy.TakeDamage(meleeDmg, transform.position, 10f);
                     Debug.Log("적 히트!" + collider.name);
                 }
             }
             // 코루틴 이용 -> 개인적으로 코루틴이 쉽고 간단하게 구현 가능했음
-            StartCoroutine(AutoReleaseAttack(0.2f));
+            StartCoroutine(AutoReleaseAttack(0.5f));
         }
     }
     private IEnumerator AutoReleaseAttack(float delay)

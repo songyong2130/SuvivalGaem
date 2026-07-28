@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e1b5eaa40e424ed9880da7bef95c009, type: 3}
   m_Name: Enemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpec
-  enemyName: "\uC801"
-  maxHp: 50
-  moveSpeed: 3.5
-  attackPower: 10
+  enemyName: "\uB354\uBBF8"
+  maxHp: 99999
+  moveSpeed: 0
+  attackPower: 0
