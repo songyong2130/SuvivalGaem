@@ -11,6 +11,6 @@ public class NormalEnemy : Enemy // Enemy클래스 상속
         {
             maxHp = enemySpec.maxHp;
         }
-        base.Awake(); // 부모 클래스의 Awake() 호출
+        base.Awake(); // 부모 클래스(Enemy)의 Awake() 호출
     }
 }
