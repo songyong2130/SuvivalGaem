@@ -102,9 +102,9 @@ public abstract class Enemy : MonoBehaviour
         Vector3 knockbackDir = transform.position - attackerPosition;
         knockbackDir.y = 0f;
         knockbackDir.Normalize();
+        hitCombo++;
         if(!isGrounded)
         {
-            hitCombo++;
             currentGravityMul = baseGravity + (hitCombo * hitRaiseGravity);
             Debug.Log($"{hitCombo}Combo!");
         }

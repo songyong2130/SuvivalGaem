@@ -42,7 +42,8 @@ public class EnemyAI : MonoBehaviour
         // 감지 범위 안이고, 아직 공격 범위 밖일 때는 추적 
         if (distance <= detectionRange && distance >= attackRange)
         {
-            Vector3 targetPosition = new Vector3(player.position.x, player.position.y, player.position.z);
+            // 플레이어 X, Z좌표와 자신의 Y값을 넣어서 좌우로만 보게 함
+            Vector3 targetPosition = new Vector3(player.position.x, transform.position.y, player.position.z);
             transform.LookAt(targetPosition);
             // 이동
             transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
@@ -57,7 +58,7 @@ public class EnemyAI : MonoBehaviour
         }
     }
     // 씬 뷰에서 감지/공격 범위 확인용 로직
-    private void ODrawGizmosSelected()
+    private void OnDrawGizmosSelected()
     {
         Gizmos.color = Color.yellow;
         Gizmos.DrawWireSphere(transform.position, detectionRange);
