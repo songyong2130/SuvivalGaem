@@ -1,4 +1,3 @@
-//TODO: 적 히트시 잠시 빨간색이 되는 로직 추가하기, 코드 리펙토링하기
 using UnityEngine;
 
 // 이 파일은 추상 클래스 -> 직접 객체 생성 불가, 다른 클래스가 상속받아 사용 (NormalEnemy,BossEnemy)
@@ -103,16 +102,16 @@ public abstract class Enemy : MonoBehaviour
         Vector3 knockbackDir = transform.position - attackerPosition;
         knockbackDir.y = 0f;
         knockbackDir.Normalize();
+        hitCombo++;
         if(!isGrounded)
         {
-            hitCombo++;
             currentGravityMul = baseGravity + (hitCombo * hitRaiseGravity);
             Debug.Log($"{hitCombo}Combo!");
         }
 
         // 이 두개의 변수로 완만한 포물선 형태로 날아가게 함
         float horizontalForce = force;
-        float verticalForce = force * 0.7f;
+        float verticalForce = force * 0.35f;
 
         // Impulse를 사용해 순간적인 힘으로 넉백을 줌
         // ForceMode.Impulse => 오브젝트에 순간적인 힘을 주어 빠르게 속도를 바꿀 때 사용

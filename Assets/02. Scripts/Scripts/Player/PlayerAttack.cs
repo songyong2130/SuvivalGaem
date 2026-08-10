@@ -1,4 +1,3 @@
-//TODO: 공격을 조금 더 다듬어 넉백을 줄여보기
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -58,7 +57,7 @@ public class PlayerAttack : MonoBehaviour
             {
                 if (collider.TryGetComponent(out Enemy enemy))
                 {
-                    enemy.TakeDamage(meleeDmg, transform.position, 10f);
+                    enemy.TakeDamage(meleeDmg, transform.position, 15f);
                     Debug.Log("적 히트!" + collider.name);
                 }
             }

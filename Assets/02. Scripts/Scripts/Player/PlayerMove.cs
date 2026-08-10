@@ -1,4 +1,4 @@
-//TODO: 달리기 시 화면 FOV가 커질때 감도 잡기, 코드 리펙토링 하기
+
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -92,13 +92,11 @@ public class PlayerMove : MonoBehaviour
     private void HandleMovement()
     {
         // playerStat연결 안되었을 시 기본값 10 적용
-        float currentSpeed = 10f;
-        if (playerStat != null) 
-        {
-            Debug.Log("playerStat 연결됨");
-            currentSpeed = isSprinting ? playerStat.runSpeed : playerStat.walkSpeed;
-        }
+        float walkSpeed = playerStat != null ? playerStat.walkSpeed : 10f;
+        float runSpeed = playerStat != null ? playerStat.runSpeed : 18f;
 
+        float currentSpeed = isSprinting ? runSpeed : walkSpeed;
+        // 월드좌표계 이동 방향 계산
         Vector3 move = transform.right * moveInput.x + transform.forward * moveInput.y;
         move.Normalize(); // 대각선 움직임이 더 빠른 현상 고침
 
