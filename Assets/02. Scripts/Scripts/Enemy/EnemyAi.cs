@@ -1,4 +1,3 @@
-// TODO : 플레이어 공격 구체적이게 구상
 using UnityEngine;
 
 public class EnemyAI : MonoBehaviour
@@ -13,8 +12,11 @@ public class EnemyAI : MonoBehaviour
     private float lastAttackTime;
     private PlayerStatus playerStatus;
 
+    private Enemy enemy;
     void Start()
     {
+        enemy = GetComponent<Enemy>();
+
         GameObject playerObj = GameObject.FindGameObjectWithTag("Player");
         if (playerObj != null)
         {
@@ -36,6 +38,8 @@ public class EnemyAI : MonoBehaviour
     void Update()
     {
         if (player == null) return;
+
+        if (enemy != null && enemy.isStunned) return; // 스턴시 움직이지 못하게 함
 
         float distance = Vector3.Distance(transform.position, player.position);
 
