@@ -15,5 +15,5 @@ MonoBehaviour:
   className: "\uAE30\uC0AC"
   maxHp: 100
   walkSpeed: 10
-  runSpeed: 18
+  runSpeed: 50
   baseDmg: 10

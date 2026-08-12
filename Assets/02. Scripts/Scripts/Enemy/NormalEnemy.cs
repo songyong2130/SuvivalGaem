@@ -4,6 +4,7 @@ public class NormalEnemy : Enemy // Enemy클래스 상속
 {
     [Header("적 설정")]
     [SerializeField] private EnemySpec enemySpec;
+    private Transform playerTransform;
 
     protected override void Awake()
     {
@@ -12,5 +13,17 @@ public class NormalEnemy : Enemy // Enemy클래스 상속
             maxHp = enemySpec.maxHp;
         }
         base.Awake(); // 부모 클래스(Enemy)의 Awake() 호출
+    }
+    protected override void Update()
+    {
+        base.Update();
+
+        if (isDead || isStunned) return;
+    }
+    protected override void FixedUpdate()
+    {
+        base.FixedUpdate();
+
+        if(isDead || isStunned) return;
     }
 }

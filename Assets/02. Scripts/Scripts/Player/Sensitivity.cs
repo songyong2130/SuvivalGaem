@@ -60,6 +60,8 @@ public class PlayerMouse : MonoBehaviour
 
         if (playerCamera != null)
         {
+            //Quaternion이란? 3차원 공간의 회전을 나타내는 4차원 복소수 기반의 데이터 형식
+            //Quaternion.Euler(Vector3) = 일반적인 각도를 쿼터니언 회전 값으로 바꿈
             playerCamera.localRotation = Quaternion.Euler(xRotation, 0f, 0f);
         }
     }
