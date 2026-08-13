@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-public class PlayerStatus : MonoBehaviour
+public class PlayerHP : MonoBehaviour
 {
     [Header("스탯 에셋")]
     [SerializeField] private PlayableCharStat playerStat;
@@ -9,7 +9,7 @@ public class PlayerStatus : MonoBehaviour
     public float currentHp {get; private set;} // 수정은 내부에서 외부는 읽기만 가능(read-only)
     public float maxHp => playerStat != null ? playerStat.maxHp : 100f; // 에셋에서 가져온 maxHp
 
-    [Header("UI 연동 이벤트")]
+    [Header("UI")]
     public UnityEvent<float, float> onHealthChanged; // 현재 체력, 최대 체력을 UI에 전달
 
     void Awake()
