@@ -1,4 +1,3 @@
-
 using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -24,6 +23,8 @@ public class PlayerMove : MonoBehaviour
     private bool isGrounded;
     private bool isSprintPressed = false;
     private bool isSprinting = false;
+    private PlayerStamina stamina;
+
 
 
     private void Start()
@@ -32,8 +33,8 @@ public class PlayerMove : MonoBehaviour
         Cursor.visible = false;
 
         // CharacterController가 비어있을시 CharacterController를 불러와 에러 방지
-        if(cc_ == null) 
-            cc_ = GetComponent<CharacterController>();
+        if(cc_ == null) cc_ = GetComponent<CharacterController>();
+        if (stamina == null) stamina = GetComponent<PlayerStamina>();
     }
     #region newInputSystem
     /// <summary>
@@ -74,7 +75,17 @@ public class PlayerMove : MonoBehaviour
         // sqrMagnitude = 벡터의 길이를 제곱한 값
         // 키 입력 감지를 더 빠르게 하기 위해 sqrMagnitude 사용
         bool isMoving = moveInput.sqrMagnitude > 0.01f;
-        isSprinting = isSprintPressed && isMoving;
+        bool isTryingToSprint = isSprintPressed && isMoving;
+
+        if (isTryingToSprint && stamina != null)
+        {
+            float drainRate = playerStat != null ? playerStat.drainPerStamina : 10f;
+            isSprinting = stamina.DrainStamina(drainRate);
+        }
+        else
+        {
+            isSprinting = false;
+        }
 
         HandleMovement();
 

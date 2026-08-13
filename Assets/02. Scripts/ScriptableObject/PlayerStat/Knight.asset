@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee056d03404b4a058dddbdf5c14b614, type: 3}
   m_Name: Knight
   m_EditorClassIdentifier: Assembly-CSharp::PlayableCharStat
-  className: "\uAE30\uC0AC"
+  className: Knight
   maxHp: 100
+  maxStamina: 100
   walkSpeed: 10
-  runSpeed: 50
+  runSpeed: 18
   baseDmg: 10

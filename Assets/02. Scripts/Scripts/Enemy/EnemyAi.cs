@@ -10,7 +10,7 @@ public class EnemyAI : MonoBehaviour
 
     private Transform player;
     private float lastAttackTime;
-    private PlayerStatus playerStatus;
+    private PlayerHP playerHP;
 
     private Enemy enemy;
     void Start()
@@ -22,10 +22,10 @@ public class EnemyAI : MonoBehaviour
         {
             player = playerObj.transform;
 
-            playerStatus = playerObj.GetComponent<PlayerStatus>();
+            playerHP = playerObj.GetComponent<PlayerHP>();
             player = GameObject.FindGameObjectWithTag("Player")?.transform;
             
-            if (playerStatus == null)
+            if (playerHP == null)
             {
                 Debug.LogError("Player 오브젝트에 PlayerStatus가 없습니다.");
             }
@@ -55,7 +55,7 @@ public class EnemyAI : MonoBehaviour
         if (distance <= attackRange && Time.time - lastAttackTime >= attackCooltime)
         {
             // 여기에는 플레이어 현재체력 감소 로직 추가
-            playerStatus.TakeDamage(damage);
+            playerHP.TakeDamage(damage);
             lastAttackTime = Time.time;
 
             Debug.Log($"플레이어에게 {damage}피해!");
