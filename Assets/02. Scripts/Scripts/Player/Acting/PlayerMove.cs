@@ -19,11 +19,13 @@ public class PlayerMove : MonoBehaviour
     
     private float gravity = -50f;
     private Vector2 moveInput;
+    public Vector2 MoveInput => moveInput;
     private Vector3 velocity;
     private bool isGrounded;
     private bool isSprintPressed = false;
     private bool isSprinting = false;
     private PlayerStamina stamina;
+    private PlayerDash pDash;
 
 
 
@@ -35,6 +37,7 @@ public class PlayerMove : MonoBehaviour
         // CharacterController가 비어있을시 CharacterController를 불러와 에러 방지
         if(cc_ == null) cc_ = GetComponent<CharacterController>();
         if (stamina == null) stamina = GetComponent<PlayerStamina>();
+        if (pDash == null) pDash = GetComponent<PlayerDash>();
     }
     #region newInputSystem
     /// <summary>
@@ -67,6 +70,7 @@ public class PlayerMove : MonoBehaviour
     void Update()
     {
         isGrounded = cc_.isGrounded;
+        if (pDash != null && pDash.IsDashing) return;
         
         if (isGrounded && velocity.y < 0)
         {

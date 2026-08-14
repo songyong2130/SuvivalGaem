@@ -39,6 +39,19 @@ public class PlayerStamina : MonoBehaviour
     {
         RegenStamina();
     }
+    public bool UseStamina(float cost)
+    {
+        if (currentStm <= cost) return false;
+
+        currentStm -= cost;
+        currentStm = Mathf.Max(0,currentStm);
+        regenTimer = regenDelay;
+
+        // 널 조건부 연산자 :
+        // if문 사용 안하고 안전하게 속성이나 메서드에 접근해서 NullReferenceException을 안뜨게 함 / 코드 길이 줄임
+        onStaminaChanged?.Invoke(currentStm, maxStm);
+        return true;
+    }
     public bool DrainStamina(float ratePerSecond) 
     {
         if (currentStm <= 0) return false;
@@ -47,7 +60,7 @@ public class PlayerStamina : MonoBehaviour
         currentStm = Mathf.Max(0,currentStm);
         regenTimer = regenDelay;
 
-        onStaminaChanged?.Invoke(currentStm,maxStm);
+        onStaminaChanged?.Invoke(currentStm, maxStm);
         return true;
     }
     private void RegenStamina()
