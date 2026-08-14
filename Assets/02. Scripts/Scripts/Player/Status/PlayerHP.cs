@@ -43,7 +43,8 @@ public class PlayerHP : MonoBehaviour
         currentHp -= damage;
         currentHp = Mathf.Clamp(currentHp, 0 , maxHp); // 0 ~ maxHp 유지
         
-        onHealthChanged.Invoke(currentHp, maxHp); // UI 갱신
+        onHealthChanged?.Invoke(currentHp, maxHp); // UI 갱신
+        // 널 조건부 연산자 사용으로 NullReferenceException 방지
 
         if(currentHp <= 0)
         {
