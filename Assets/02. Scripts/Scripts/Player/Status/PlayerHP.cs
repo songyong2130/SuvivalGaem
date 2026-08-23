@@ -12,7 +12,7 @@ public class PlayerHP : MonoBehaviour
     [Header("UI")]
     public UnityEvent<float, float> onHealthChanged; // 현재 체력, 최대 체력을 UI에 전달
 
-    void Awake()
+    private void Awake()
     {
         if (playerStat != null )
         {
@@ -25,7 +25,7 @@ public class PlayerHP : MonoBehaviour
         }
     }
 
-    void Start()
+    private void Start()
     {
         if (onHealthChanged == null)
         {

@@ -14,7 +14,7 @@ public class PlayerStamina : MonoBehaviour
     public UnityEvent<float,float> onStaminaChanged;
     private float regenTimer;
 
-    void Awake()
+    private void Awake()
     {
         if (playerStat != null)
         {
@@ -26,7 +26,7 @@ public class PlayerStamina : MonoBehaviour
             currentStm = 100f;
         }
     }
-    void Start()
+    private void Start()
     {
         if (onStaminaChanged == null)
         {
@@ -35,9 +35,13 @@ public class PlayerStamina : MonoBehaviour
         }
         onStaminaChanged.Invoke(currentStm,maxStm);
     }
-    void Update()
+    private void Update()
     {
         RegenStamina();
+    }
+    public bool HasEnoughStamina(float cost)
+    {
+        return currentStm >= cost;
     }
     public bool UseStamina(float cost)
     {

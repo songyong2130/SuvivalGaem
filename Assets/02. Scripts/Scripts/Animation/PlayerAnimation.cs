@@ -5,7 +5,7 @@ public class PlayerAnimation : MonoBehaviour
 {
     private Animator animator;
 
-    void Start()
+    private void Start()
     {
         // GetComponentInChildren : 자식 요소에 있는 Animator를 불러옴
         animator = GetComponentInChildren<Animator>();

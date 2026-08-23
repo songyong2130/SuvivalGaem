@@ -4,7 +4,7 @@ public class AnimCheck : MonoBehaviour
 {
     private PlayerAttack playerAttack;
 
-    void Start()
+    private void Start()
     {
         // GetComponentInParent : 부모 요소에 있는 PlayerAttack를 불러옴
         playerAttack = GetComponentInParent<PlayerAttack>();
