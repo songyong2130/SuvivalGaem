@@ -17,7 +17,7 @@ public class PlayerDash : MonoBehaviour
     private bool isCooldown = false;
     private PlayerStamina stamina;
     private PlayerMove playerMove;
-    void Start()
+    private void Start()
     {
         cc = GetComponent<CharacterController>();
         stamina = GetComponent<PlayerStamina>();

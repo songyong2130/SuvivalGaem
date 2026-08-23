@@ -23,7 +23,7 @@ public class PlayerAttack : MonoBehaviour
     private PlayerAnimation playerAnim;
     private PlayerMove playerMove;
 
-    void Awake()
+    private void Awake()
     {
         
             if (player == null) player = gameObject;
@@ -41,7 +41,6 @@ public class PlayerAttack : MonoBehaviour
     /// <param name="Attack"></param>
     public void OnAttack(InputAction.CallbackContext ctx)
     {
-        Debug.Log($"PlayerMove {playerMove != null}");
         if(playerMove == null) return;
 
         if(ctx.started && !isAttack)
@@ -63,7 +62,6 @@ public class PlayerAttack : MonoBehaviour
                     boxCenter,
                     meleeBoxSize * 0.5f,
                     boxRotation
-                
                 );
 
             foreach(Collider collider in attackArray)

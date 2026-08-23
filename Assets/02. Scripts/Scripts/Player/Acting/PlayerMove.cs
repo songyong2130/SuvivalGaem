@@ -67,7 +67,7 @@ public class PlayerMove : MonoBehaviour
         else if (ctx.canceled) isSprintPressed = false;
     }
     #endregion
-    void Update()
+    private void Update()
     {
         isGrounded = cc_.isGrounded;
         if (pDash != null && pDash.IsDashing) return;

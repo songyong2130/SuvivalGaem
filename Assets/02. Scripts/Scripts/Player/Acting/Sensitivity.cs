@@ -33,7 +33,7 @@ public class PlayerMouse : MonoBehaviour
         if(ctx.performed) lookInput = ctx.ReadValue<Vector2>();
     }
     // 최종 감도계산은 Update() 함수에서
-    void Update()
+    private void Update()
     {
         float fovMultiplier = 1f;
 

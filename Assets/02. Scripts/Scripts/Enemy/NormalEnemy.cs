@@ -4,7 +4,6 @@ public class NormalEnemy : Enemy // Enemy클래스 상속
 {
     [Header("적 설정")]
     [SerializeField] private EnemySpec enemySpec;
-    private Transform playerTransform;
 
     protected override void Awake()
     {

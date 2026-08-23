@@ -13,7 +13,7 @@ public class EnemyAI : MonoBehaviour
     private PlayerHP playerHP;
 
     private Enemy enemy;
-    void Start()
+    private void Start()
     {
         enemy = GetComponent<Enemy>();
 
@@ -35,7 +35,7 @@ public class EnemyAI : MonoBehaviour
             Debug.LogError("Player 태그가 있는 오브젝트가 없습니다.");
         }
     }
-    void Update()
+    private void Update()
     {
         if (player == null) return;
 
