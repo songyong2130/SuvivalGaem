@@ -1,6 +1,7 @@
 // TODO : if 게임이 커져 Enemy관리가 어렵다 ? => 바로 단일 책임원리로 나눔
 using System.Collections;
 using UnityEngine;
+using UnityEngine.AI;
 
 // 이 파일은 추상 클래스 -> 직접 객체 생성 불가, 다른 클래스가 상속받아 사용 (NormalEnemy,BossEnemy)
 // protected -> 자기 자신 클래스 내부 or 상속받은 자식 클래스만 사용 가능
@@ -28,17 +29,20 @@ public abstract class Enemy : MonoBehaviour
     protected bool isGrounded;
 
     protected Rigidbody rb;
+    protected NavMeshAgent agent;
 
     protected virtual void Awake()
     {
         currentHp = maxHp;
         rb = GetComponent<Rigidbody>();
+        agent = GetComponent<NavMeshAgent>();
         currentGravityMul = baseGravity;
 
         // 넉백 후 자연스럽게 멈추도록 기본값 보정
-        if (rb != null && rb.linearDamping == 0f) 
+        if (rb != null) 
         {
-            rb.linearDamping = 2f; 
+            rb.isKinematic = true;
+            if(rb.linearDamping == 0f) rb.linearDamping = 2f;
         }
     }
 
@@ -53,8 +57,8 @@ public abstract class Enemy : MonoBehaviour
         }
         else
         {
-            // groundCheck가 없을 경우 Y 속도가 거의 없을 때를 지면으로 간주
-            isGrounded = Mathf.Abs(rb.linearVelocity.y) < 0.05f;
+            // groundCheck가 없거나 isKinematic = True 시, Y 속도가 거의 없을 때를 지면으로 간주
+            isGrounded = (rb != null && rb.isKinematic) || Mathf.Abs(rb.linearVelocity.y) < 0.05f;
         }
 
         // 착지 순간 (공중 -> 지상)에 정상적으로 콤보 및 중력 리셋
@@ -66,6 +70,7 @@ public abstract class Enemy : MonoBehaviour
 
     protected virtual void FixedUpdate()
     {
+        if (agent != null && agent.enabled) return;
         ApplyCustomGravity();
     }
     private void ResetGravity()
@@ -147,6 +152,10 @@ public abstract class Enemy : MonoBehaviour
     {
         isStunned = true;
 
+        // 넉백 시에는 agent 끄고 RigidBody 물리 킴
+        if (rb != null) rb.isKinematic = false;
+        if (agent != null) agent.enabled = false;
+
         Vector3 knockbackDir = transform.position - attackerPosition;
         knockbackDir.y = 0f;
         if (knockbackDir == Vector3.zero)
@@ -164,6 +173,13 @@ public abstract class Enemy : MonoBehaviour
         rb.AddForce(finalForce, ForceMode.Impulse);
 
         yield return new WaitForSeconds(duration);
+        // WaitUntil : 특정 조건이 true가 될때까지 코루틴을 잠시 기다리게 함
+        yield return new WaitUntil(() => isGrounded); // 람다식
+
+        // 넉백 끝나면 다시 원상 복구
+        if (rb != null) rb.isKinematic = true;
+        if (agent != null) agent.enabled = true;
+        
 
         isStunned = false; // AI다시 활동
         knockbackCoroutine = null; // 코루틴을 비우는 이유? -> 실행 상태 확인 및 중복 실행이나 예외 막기위해

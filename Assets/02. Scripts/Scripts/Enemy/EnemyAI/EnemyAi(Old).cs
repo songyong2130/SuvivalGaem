@@ -1,12 +1,13 @@
+// TODO: 단일 책임 원칙을 지키고 몇몇 스탯들은 EnemySpec에서 불러올 예정
 using UnityEngine;
 
-public class EnemyAI : MonoBehaviour
+public class EnemyAIold : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
     [SerializeField] private float detectionRange = 10f;
     [SerializeField] private float attackRange = 2f;
     [SerializeField] private float attackCooltime = 1f;
-    [SerializeField] int damage = 10;
+    [SerializeField] int damage = 10; 
 
     private Transform player;
     private float lastAttackTime;

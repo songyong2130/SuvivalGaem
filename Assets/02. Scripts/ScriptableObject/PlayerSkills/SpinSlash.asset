@@ -21,7 +21,7 @@ MonoBehaviour:
   stunDuration: 0.5
   ExecutionType: 0
   areaType: 2
-  radius: 7
+  radius: 8
   angle: 360
   boxSize: {x: 3, y: 2, z: 10}
   attackOffset: 2

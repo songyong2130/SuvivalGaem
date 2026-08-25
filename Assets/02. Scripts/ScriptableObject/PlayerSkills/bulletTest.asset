@@ -27,4 +27,4 @@ MonoBehaviour:
   attackOffset: 2
   projectilePrefab: {fileID: 1930047742934927773, guid: cbd74296db55e49db9c8133d1ae6956f, type: 3}
   projectileSpeed: 20
-  projectileLifeTime: 5
+  projectileLifeTime: 2
