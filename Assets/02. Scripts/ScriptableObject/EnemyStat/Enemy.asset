@@ -13,6 +13,9 @@ MonoBehaviour:
   m_Name: Enemy
   m_EditorClassIdentifier: Assembly-CSharp::EnemySpec
   enemyName: "\uB354\uBBF8"
-  maxHp: 99999
+  maxHp: 200
   moveSpeed: 0
   attackPower: 0
+  detectionRange: 20
+  attackRange: 3
+  attackcooltime: 2
