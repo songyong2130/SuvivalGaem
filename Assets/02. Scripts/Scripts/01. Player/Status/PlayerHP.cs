@@ -51,6 +51,14 @@ public class PlayerHP : MonoBehaviour
             Die();
         }
     }
+    public void Heal(float amount)
+    {
+        if (currentHp >= maxHp) return;
+        
+        currentHp = Mathf.Min(currentHp + amount, maxHp);
+
+        onHealthChanged?.Invoke(currentHp, maxHp);
+    }
     private void Die()
     {
         Debug.Log("플레이어 사망");
