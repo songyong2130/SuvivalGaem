@@ -24,7 +24,7 @@ MonoBehaviour:
   radius: 8
   angle: 360
   boxSize: {x: 3, y: 2, z: 10}
-  attackOffset: 2
+  attackOffset: 0
   projectilePrefab: {fileID: 0}
   projectileSpeed: 20
   projectileLifeTime: 5
