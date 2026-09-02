@@ -17,7 +17,7 @@ public class TurretTargeter : MonoBehaviour
             searchTimer = 0f;
         }
     }
-    private Enemy IsTargeting()
+    public Enemy IsTargeting()
     {
         float shortestDistTarget = float.MaxValue;
         currentTarget = null;
