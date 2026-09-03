@@ -6,12 +6,7 @@ public class TurretRotator : MonoBehaviour
     [SerializeField] private Transform xRotation;
     [SerializeField] private Transform yRotation;
     [SerializeField] private float spinSpeed = 10f;
-
-    private void Update()
-    {
-        if (targeter.currentTarget == null) return;
-        TurretRotate();
-    }
+    
     public void TurretRotate()
     {
         Vector3 playerDir = (targeter.currentTarget.transform.position - transform.position).normalized;

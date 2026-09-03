@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class TurretTargeter : MonoBehaviour
 {
-    [SerializeField] private float turretRange = 30f;
+    [SerializeField] private TurretStat stat;
     [SerializeField] private float detectCycle = 0.15f;
     [SerializeField] private LayerMask targetLayer;
     [SerializeField] private Transform turretHead;
@@ -21,7 +21,7 @@ public class TurretTargeter : MonoBehaviour
     {
         float shortestDistTarget = float.MaxValue;
         currentTarget = null;
-        Collider[] EnemyInRange = Physics.OverlapSphere(turretHead.position, turretRange, targetLayer);
+        Collider[] EnemyInRange = Physics.OverlapSphere(turretHead.position, stat.turretRange, targetLayer);
         foreach (var rangeEnemy in EnemyInRange)
         {
             if (rangeEnemy.TryGetComponent<Enemy>(out Enemy enemy)) // out : 계산 결과를 메서드 외부로 전달해준다
