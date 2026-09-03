@@ -5,11 +5,6 @@ public class SkillCaster : MonoBehaviour
 {
     [SerializeField] private LayerMask enemyLayer;
     private PlayableCharStat playerStat;
-
-    // void Awake()
-    // {
-    //     playerStat = GetComponent<PlayableCharStat>();
-    // }
     public void CastSkill(PlayerSkill data, Transform firePoint)
     {
         if (data == null) return;
