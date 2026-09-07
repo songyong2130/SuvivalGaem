@@ -8,6 +8,18 @@ public class TurretShooter : MonoBehaviour
     [SerializeField] private TurretTargeter target;
     [SerializeField] private Transform firePos;
     [SerializeField] private LayerMask enemyLayer;
+    private float fireTimer;
+
+    public void TryShoot(Enemy target)
+    {
+        if (target == null) return;
+        fireTimer += Time.deltaTime;
+        if (fireTimer >= stat.attackSpeed)
+        {
+            Shoot();
+            fireTimer -= stat.attackSpeed;
+        }
+    }
     
     public void Shoot()
     {

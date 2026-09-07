@@ -1,3 +1,4 @@
+using Unity.Mathematics;
 using UnityEngine;
 
 public class TurretTargeter : MonoBehaviour
@@ -8,18 +9,19 @@ public class TurretTargeter : MonoBehaviour
     [SerializeField] private Transform turretHead;
     public Enemy currentTarget {get; private set;}
     private float searchTimer;
-    private void Update()
+    
+    public void SearchTarget()
     {
         searchTimer += Time.deltaTime;
         if (searchTimer >= detectCycle)
         {
             IsTargeting();
-            searchTimer = 0f;
+            searchTimer -= detectCycle;
         }
     }
     public Enemy IsTargeting()
     {
-        float shortestDistTarget = float.MaxValue;
+        float shortestDistTarget = math.INFINITY;
         currentTarget = null;
         Collider[] EnemyInRange = Physics.OverlapSphere(turretHead.position, stat.turretRange, targetLayer);
         foreach (var rangeEnemy in EnemyInRange)

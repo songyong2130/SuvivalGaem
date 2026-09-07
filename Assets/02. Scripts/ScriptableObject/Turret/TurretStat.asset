@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8233e8b22ae59428aa16120fda72f568, type: 3}
   m_Name: TurretStat
   m_EditorClassIdentifier: Assembly-CSharp::TurretStat
-  turretRange: 20
-  damage: 20
+  turretRange: 200
+  damage: 10
   attackSpeed: 0.5
