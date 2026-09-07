@@ -9,6 +9,8 @@ using UnityEngine.AI;
 
 public abstract class Enemy : MonoBehaviour
 {
+    [SerializeField] protected Rigidbody rb;
+    [SerializeField]protected NavMeshAgent agent;
     [Header("적 상태 및 수치")]
     [SerializeField] protected float maxHp = 100f;
     protected float currentHp;
@@ -28,14 +30,9 @@ public abstract class Enemy : MonoBehaviour
     private Coroutine knockbackCoroutine;
     protected bool isGrounded;
 
-    protected Rigidbody rb;
-    protected NavMeshAgent agent;
-
     protected virtual void Awake()
     {
         currentHp = maxHp;
-        rb = GetComponent<Rigidbody>();
-        agent = GetComponent<NavMeshAgent>();
         currentGravityMul = baseGravity;
 
         // 넉백 후 자연스럽게 멈추도록 기본값 보정

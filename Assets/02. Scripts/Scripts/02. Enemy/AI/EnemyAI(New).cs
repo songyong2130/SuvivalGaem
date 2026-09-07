@@ -5,8 +5,8 @@ using UnityEngine;
 /// </summary>
 public class EnemyAI : MonoBehaviour
 {
-    private EnemyPerception perception;
-    private EnemyMover mover;
+    [SerializeField] private EnemyPerception perception;
+    [SerializeField]private EnemyMover mover;
     private EnemyCombat combat;
     private Enemy enemy;
     [SerializeField] private EnemySpec enemySpec;
